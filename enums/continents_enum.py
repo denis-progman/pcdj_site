@@ -1,6 +1,6 @@
 import enum
 
-class Continents(str, enum.Enum):
+class ContinentsEnum(str, enum.Enum):
     europe = "Europe"
     asia = "Asia"
     africa = "Africa"

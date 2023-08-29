@@ -1,7 +1,3 @@
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
-
 from .user import User
-
-__all__ = ['User']
+from .user_type import UserType
+from .user_type_assignations import UserTypeAssignations
