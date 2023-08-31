@@ -12,7 +12,7 @@ class UserTypeAssignations(db.Model, MainModel):
 
     id = db.Column(db.Integer(), Identity(), primary_key=True, nullable=False, unique=True,)
     created_at = db.Column(db.DateTime(timezone=True), default=datetime.now)
-    type_id = db.Column(db.ForeignKey("user_types.id"))
-    user_id = db.Column(db.ForeignKey("users.id"))
+    type_id = db.Column(db.Integer(), db.ForeignKey("user_types.id", ondelete="CASCADE"), nullable=False)
+    user_id = db.Column(db.Integer(), db.ForeignKey("users.id"), nullable=False)
     canceled_at = db.Column(db.DateTime(timezone=True))
     checked = db.Column(db.Boolean, unique=False, default=False)

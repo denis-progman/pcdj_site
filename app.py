@@ -1,32 +1,15 @@
 import os
-from . import *
-from .controllers.user_controller import get_all_users, get_user_by_id, create_user, update_user, delete_user
-from flask import request
+from db import db, migrate
+from flask import Flask
+from configs import config_dict 
+from router import routs_init
+
+app_instance = Flask(__name__)
+app_instance.config.from_object(config_dict[os.getenv("CONFIG_MODE")])
+db.init_app(app_instance)
+migrate.init_app(app_instance, db)
 
 if __name__ == "__main__":
-    app.run()
+    app_instance.run()
 
-@app.route('/')
-def hello():
-    return "Hello World!"
-
-@app.route("/users", methods=['GET'])
-def users_method():
-    if request.method == 'GET': return get_all_users(db)
-    else: return 'Method is Not Allowed'
-
-@app.route("/create_user", methods=['POST'])
-def create_user_method():
-    if request.method == 'POST': return create_user(db)
-    else: return 'Method is Not Allowed'
-
-@app.route("/update_user/<user_id>", methods=['PUT'])
-def update_user_method(user_id):
-    if request.method == 'PUT': return update_user(db, user_id)
-    else: return 'Method is Not Allowed'
-
-@app.route("/delete_user/<user_id>", methods=['DELETE'])
-def delete_user_method(user_id):
-    if request.method == 'DELETE': return delete_user(db, user_id)
-    else: return 'Method is Not Allowed'
-    
+routs_init(app_instance)

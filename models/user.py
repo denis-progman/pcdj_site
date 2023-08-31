@@ -7,7 +7,21 @@ from db import db
 
 class User(db.Model, MainModel):
     __tablename__ = 'users'
-    user_types = db.relationship("UserTypeAssignations", back_populates='user')
+
+    mutable_fields = [
+        "first_name",
+        "last_name",
+        "nickname",
+        "avatar",
+        "wallpaper",
+        "preview",
+        "external_link",
+        "continent",
+        "birthday",
+    ]
+
+
+    user_types = db.relationship("UserTypeAssignations", back_populates='user', cascade="all, delete")
 # Auto Generated Fields:
     id = db.Column(db.Integer(), Identity(), primary_key=True, nullable=False, unique=True,)
     created_at = db.Column(db.DateTime(timezone=True), default=datetime.now)

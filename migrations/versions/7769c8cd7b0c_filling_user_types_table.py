@@ -18,17 +18,26 @@ depends_on = None
 
 table = "user_types"
 userTypes = [
-    {"type_name": "listener"},
-    {"type_name": "dancer"},
-    {"type_name": "model"},
-    {"type_name": "dj"},
-    {"type_name": "sound_producer"},
-    {"type_name": "vip"},
+    "listener",
+    "dancer",
+    "model",
+    "dj",
+    "sound_producer",
+    "vip",
 ]
 
 def upgrade():
     connection = op.get_bind()
-    connection.execute(Table(table, MetaData(), autoload_with=connection).insert().values(userTypes))
+    check_types = [type_row.type_name for type_row in connection.execute(text(f'SELECT "type_name" FROM {table}'))]
+    filtered_dict = [{"type_name": type_row} for type_row in userTypes if not type_row in check_types]
+    
+    if  len(filtered_dict) > 0:
+        connection.execute(Table(table, MetaData(), autoload_with=connection).insert().values(filtered_dict))
+        print("INFO [user_types migration] executed - added types: ", end="")
+        print(filtered_dict)
+    else:
+        print("INFO [user_types migration] Skipped - all types are already existed")
+        
     connection.commit()
 
 def downgrade():
