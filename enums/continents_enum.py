@@ -1,10 +1,10 @@
-import enum
+from enums.main_enum import MainEnum
 
-class ContinentsEnum(str, enum.Enum):
-    europe = "Europe"
-    asia = "Asia"
-    africa = "Africa"
-    south_america = "South America"
-    north_america = "North America"
-    antarctica = "Antarctica"
-    australia = "Australia"
+class ContinentsEnum(MainEnum):
+    europe = '{"description": "Europe"}'
+    asia = '{"description": "Asia"}'
+    africa = '{"description": "Africa"}'
+    south_america = '{"description": "South America"}'
+    north_america = '{"description": "North America"}'
+    antarctica = '{"description": "Antarctica"}'
+    australia = '{"description": "Australia"}'

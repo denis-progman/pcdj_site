@@ -1,6 +1,6 @@
 import uuid
 from models.user import User
-from models.user_type_assignations import UserTypeAssignations
+from models.user_type_assignation import UserTypeAssignation
 from models.user_type import UserType
 from sqlalchemy import select, desc
 from db import db
@@ -12,11 +12,11 @@ class UserService:
             clauses.append(User.__dict__[field] == field_value)
 
         stmt = select(
-            User, UserType, UserTypeAssignations
+            User, UserType, UserTypeAssignation
         ).join(
             User.user_types, isouter=True
         ).join(
-            UserTypeAssignations.user_type, isouter=True
+            UserTypeAssignation.user_type, isouter=True
         ).filter(
             *clauses
         ).order_by(desc(User.id)).slice(from_number, count)
@@ -27,8 +27,8 @@ class UserService:
             response[row.User.id] = row.User.toDict()
             if not hasattr(response[row.User.id], type_key):
                 response[row.User.id][type_key] = {}
-            if row.UserTypeAssignations:
-                response[row.User.id][type_key][row.UserType.type_name] = row.UserTypeAssignations.toDict()
+            if row.UserTypeAssignation:
+                response[row.User.id][type_key][row.UserType.type_name] = row.UserTypeAssignation.toDict()
 
         return response
 
@@ -44,7 +44,7 @@ class UserService:
         
         db.session.add(new_user)
         basic_user_type = UserType.query.filter_by(type_name="listener").first()
-        basic_user_type_assignations = UserTypeAssignations(
+        basic_user_type_assignations = UserTypeAssignation(
             type_id = basic_user_type.id,
             user_id = new_user.id,
         )

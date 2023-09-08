@@ -1,4 +1,4 @@
-from sqlalchemy import Identity, inspect
+from sqlalchemy import Identity
 from datetime import datetime
 from .main_model import MainModel
 from enums.continents_enum import ContinentsEnum
@@ -19,9 +19,11 @@ class User(db.Model, MainModel):
         "continent",
         "birthday",
     ]
-
-
-    user_types = db.relationship("UserTypeAssignations", back_populates='user', cascade="all, delete")
+    
+    user_types = db.relationship("UserTypeAssignation", back_populates='user', cascade="all, delete")
+    tracks = db.relationship("Track", back_populates='user')
+    track_permissions = db.relationship("TrackPermissionUserAssociation", back_populates='user', cascade="all, delete")
+    
 # Auto Generated Fields:
     id = db.Column(db.Integer(), Identity(), primary_key=True, nullable=False, unique=True,)
     created_at = db.Column(db.DateTime(timezone=True), default=datetime.now)
