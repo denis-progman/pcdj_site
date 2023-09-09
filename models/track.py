@@ -10,6 +10,7 @@ class Track(db.Model, MainModel):
     __tablename__ = 'tracks'
 
     mutable_fields = [
+        "user_id",
         "file_url",
         "wave_url",
         "title",
@@ -35,7 +36,7 @@ class Track(db.Model, MainModel):
     user_id = db.Column(db.Integer(), db.ForeignKey("users.id"), nullable=False)
     file_url = db.Column(db.String(512), nullable=False)
     wave_url = db.Column(db.String(512), nullable=False)
-    title = db.Column(db.String(256), nullable=False, unique=True)
+    title = db.Column(db.String(256), nullable=False)
     author = db.Column(db.String(256), nullable=False)
     cover = db.Column(db.Integer())
     cover_url = db.Column(db.String(256))
@@ -43,4 +44,4 @@ class Track(db.Model, MainModel):
     style_id = db.Column(db.Integer(), db.ForeignKey("music_styles.id"), nullable=False)
 
     checked = db.Column(db.Boolean(), nullable=False, default=False)
-    visibility = db.Column(db.Enum(VisibilityEnum), nullable=False)
+    visibility = db.Column(db.Enum(VisibilityEnum), nullable=False, default=VisibilityEnum.all)
