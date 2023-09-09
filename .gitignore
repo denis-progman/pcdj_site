@@ -5,4 +5,4 @@ __pycache__/
 .terraform
 .DS_Store
 .venv
-./dev_file_storage
+dev_file_storage/*
