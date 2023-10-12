@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, send_from_directory
 from controllers import UserController
 from controllers import TrackController
 
@@ -14,7 +14,10 @@ route_rules = [
     {"rule": "/delete_user/<int:user_id>", "methods": ["DELETE"], "view_func": UserController.delete_user},
     # Track API
     {"rule": "/get_tracks_by/<field>/<field_value>", "methods": ["GET"], "view_func": TrackController.get_tracks_by},
+    {"rule": "/get_all_tracks", "methods": ["GET"], "view_func": TrackController.get_all_tracks},
     {"rule": "/upload_track", "methods": ["POST"], "view_func": TrackController.upload_track},
+    {"rule": "/download_track/<filename>", "methods": ["GET"], "view_func": TrackController.download_track},
+
 ]
 
 def routs_init(app: Flask):
