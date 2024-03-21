@@ -12,7 +12,8 @@ It is used along with the Flutter mobile app.
 
 [See the Front-end part here.](https://github.com/denis-progman/pc_dj_new_front)
 
->#### Functional stuff of the website so far
+ ---
+### Functional stuff of the website so far
 >- user model CRUD operations
 >- track model CRUD operations
 >- track file uploading CRUD operations
@@ -24,6 +25,8 @@ It is used along with the Flutter mobile app.
 >- Python (Flask framework)
 >- Postgres database
 >- REST API requests
+
+ ---
 
  ## ⚠️ In progress, and not available publicly currently
  The project will be moved from a social network platform to this mobile version.
