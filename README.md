@@ -10,6 +10,8 @@
 The absolutely custom project built from scratch. It has a few functions invented by personal ideas and my fiends requests from the music area.
 It is used along with the Flutter mobile app.
 
+[See the Front-end part here.](https://github.com/denis-progman/pc_dj_new_front)
+
 >#### Functional stuff of the website so far
 >- user model CRUD operations
 >- track model CRUD operations
