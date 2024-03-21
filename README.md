@@ -1,5 +1,5 @@
-<img src="https://raw.githubusercontent.com/denis-progman/pcdj_site/main/files/images/pc_dj_header_example.jpg" width="400" alt="PC studio DJ head cover">
-<h2 align="center">PC Studio DJ - the mobile app API</h1>
+<div align="center"><img src="https://raw.githubusercontent.com/denis-progman/pcdj_site/main/files/images/pc_dj_header_example.jpg" width="600" alt="PC studio DJ head cover">
+<h2>PC Studio DJ - the mobile app API</h1></div>
 
 ## About
  PC Studio DJ is my fun side project about electronic music(EDM) and for its creators, that i doing in my free time, as a hobby.
